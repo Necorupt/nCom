@@ -17,4 +17,13 @@ class SubCategoryItemController extends Controller
 
         return response()->json( Product::where("subcategory_id",$category->id)->get());
     }
+
+    public function create(Request $request) : JsonResponse{
+        $subCategory = SubCategoryItem::create($request->all());
+        return response()->json($subCategory);
+    }
+
+    public function getBySlug(Request $request, $slug) : JsonResponse{
+        return response()->json( SubCategoryItem::where("slug",$slug)->firstOrFail());
+    }
 }

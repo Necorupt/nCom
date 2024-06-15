@@ -10,9 +10,19 @@
             {{ item.name }}
         </a>
     </div>
+
+    <form action="/api/category/create" method="post" @submit.prevent="send" ref="form">
+        <input name="name" placeholder="Имя">
+        <input name="slug" placeholder="Ссылка">
+        <input name="submit" type="submit" >
+    </form>
+
+
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
 
     data() {
@@ -25,6 +35,15 @@ export default {
         axios.get('/api/category/enumerate').then(Response => {
             this.categories = Response.data;
         })
+    },
+
+    methods:{
+        send(){
+            let formData = new FormData(this.$refs.form);
+            axios.post('/api/category/create',formData).then(Response=>{
+                console.log(Response);
+            })
+        }
     }
 }
 </script>

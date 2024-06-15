@@ -12,4 +12,9 @@ class ProductController extends Controller
     public function getBySlug(Request $request, $slug) : JsonResponse{
         return response()->json( Product::where("slug",$slug)->firstOrFail());
     }
+
+    public function create(Request $request) : JsonResponse{
+        $product = Product::create($request->all());
+        return response()->json($product);
+    }
 }

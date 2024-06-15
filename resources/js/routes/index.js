@@ -35,6 +35,14 @@ const router = createRouter({
             path: '/admin/category/:name',
             component: () => import('@/views/Admin/Category.vue')
         },
+        {
+            path: '/admin/subcategory/:name',
+            component: () => import('@/views/Admin/Subcategory.vue')
+        },
+        {
+            path: '/admin/product/:name',
+            component: () => import('@/views/Admin/Product.vue')
+        },
     ],
 })
 

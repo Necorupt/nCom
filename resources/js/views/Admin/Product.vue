@@ -6,12 +6,12 @@
     <a href="/Admin/categories"></a>
 
     <div class="categories__list">
-        <a v-for="item in subcategories" :href="'/admin/subcategory/' + item.slug">
+        <a v-for="item in categories" :href="'/admin/category/' + item.slug">
             {{ item.name }}
         </a>
     </div>
 
-    <form action="/api/subcategory/create" method="post" @submit.prevent="send" ref="form">
+    <form action="/api/product/create" method="post" @submit.prevent="send" ref="form">
         <input name="name" placeholder="Имя">
         <input name="slug" placeholder="Ссылка">
         <input name="submit" type="submit" >
@@ -27,26 +27,20 @@ export default {
 
     data() {
         return {
-            subcategories: [],
-            category:[],
+            categories: []
         }
     },
 
     mounted() {
-        axios.get('/api/category/'+this.$route.params.name+'/getBySlug').then(Response => {
-            this.category = Response.data;
-        });
-
-        axios.get('/api/category/'+this.$route.params.name+'/enumerateByName').then(Response => {
-            this.subcategories = Response.data;
-        });
+        axios.get('/api/category/enumerate').then(Response => {
+            this.categories = Response.data;
+        })
     },
 
     methods:{
         send(){
             let formData = new FormData(this.$refs.form);
-            formData.append('category_id',this.category.id);
-            axios.post('/api/subcategory/create',formData).then(Response=>{
+            axios.post('/api/product/create',formData).then(Response=>{
                 console.log(Response);
             })
         }
