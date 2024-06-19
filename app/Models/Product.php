@@ -12,6 +12,8 @@ class Product extends Model
     protected $fillable = [
         "name",
         "slug",
-        "subcategory_id"
+        "subcategory_id",
+        "image_url",
+        "price"
     ];
 }

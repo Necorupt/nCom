@@ -1,11 +1,18 @@
 <template>
     <div class="catalog">
 
-
         <PathRender :category="$route.params.category" :subcategory="$route.params.subcategory"
             :product="$route.params.product"></PathRender>
 
-            <h1>{{product.name}}</h1>
+        <div class="product__info">
+            <div class="product__info-left">
+                <img class="product__info-preview" :src="'/'+product.image_url">
+            </div>
+            <div class="product__info-right">
+                <h1>{{ product.name }}</h1>
+                <h1>Цена {{ product.price }}р</h1>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -18,7 +25,7 @@ export default {
 
     data() {
         return {
-            product:{
+            product: {
 
             }
         }
@@ -34,8 +41,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.catalog {
 
+.catalog {
     margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
+
+.product__info{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    width: calc(100% - 24px * 2);
+    padding: 24px;
+
+    &-left{
+        width: 800px;
+        height: 400px;
+    }
+
+    &-preview{
+        width: 800px;
+        height: 400px;
+        object-fit: cover;
+    }
+}
+
 </style>

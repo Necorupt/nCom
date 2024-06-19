@@ -3,11 +3,11 @@
         <div class="header__top">
             <a href="" class="header__link">Доставка</a>
             <a href="" class="header__link">Контакты</a>
-            <a href="" class="header__link">Шоурумы</a>
+            <a href="/catalog" class="header__link">Каталог</a>
         </div>
 
         <div class="header__bottom">
-            <img class="header__logo" src="@/resources/images/logo.svg" alt="" />
+            <a class="header__logo-wrapper" href="/"><img class="header__logo" src="@/resources/images/logo.svg" alt="" /></a>
             <div class="header__navigation">
                 <a v-for="item in headerItems"
                     :href="'/catalog/' + item.slug" class="header__link">{{item.name}}</a>
@@ -72,6 +72,12 @@ header {
     &__logo {
         width: 100px;
         height: auto;
+
+        &-wrapper{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        };
     }
 
     &__navigation {

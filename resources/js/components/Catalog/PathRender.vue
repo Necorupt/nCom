@@ -14,27 +14,52 @@ export default {
     data() {
         return {
             pathItems: [],
+            subcategoryInfo: {
+                name: null,
+                link: null,
+            },
+            categoryInfo: {
+                name: null,
+                link: null,
+            },
+
         };
     },
     mounted() {
 
-        this.pathItems.push({ name: 'каталог', link: "/catalog/"});
+        this.pathItems.push({ name: 'каталог', link: "/catalog/" });
 
-        if (this.category != undefined)
-            this.pathItems.push({ name: this.category, link: "/catalog/" + this.category });
+        if (this.category != undefined) {
+            axios.get('/api/category/' + this.$route.params.category + '/getBySlug').then(Response => {
+                this.categoryInfo = Response.data;
+                this.pathItems.push({
+                    name: this.categoryInfo.name,
+                    link: "/catalog/" + this.category + '/',
+                });
 
-        if (this.subcategory != undefined)
-            this.pathItems.push({
-                name: this.subcategory,
-                link: "/catalog/"  + this.category + '/' + this.subcategory,
+                if (this.subcategory != undefined) {
+                    this.getSubcategoryInfo();
+                }
             });
-
-        if (this.product != undefined)
-            this.pathItems.push({
-                name: this.product,
-                link: "/catalog/" + this.category + "/" + this.subcategory + "/" + this.product,
-            });
+        }
     },
+    methods: {
+        getSubcategoryInfo() {
+            axios.get('/api/subcategory/' + this.$route.params.subcategory + '/getBySlug').then(Response => {
+                this.subcategoryInfo = Response.data;
+                this.pathItems.push({
+                    name: this.subcategoryInfo.name,
+                    link: "/catalog/" + this.category + '/' + this.subcategory,
+                });
+
+                if (this.product != undefined)
+                    this.pathItems.push({
+                        name: this.product,
+                        link: "/catalog/" + this.category + "/" + this.subcategory + "/" + this.product,
+                    });
+            });
+        }
+    }
 };
 </script>
 
@@ -44,7 +69,7 @@ export default {
     flex-direction: row;
     position: relative;
 
-    &-link{
+    &-link {
         position: relative;
         text-decoration: none;
         color: gray;
@@ -54,7 +79,7 @@ export default {
             sans-serif;
     }
 
-    &-link::after{
+    &-link::after {
         position: relative;
         text-decoration: none;
         color: gray;
@@ -65,19 +90,19 @@ export default {
         content: '>>'
     }
 
-    &-link::before{
+    &-link::before {
 
         position: absolute;
         bottom: 0px;
         content: '';
-        background-color:  black;
+        background-color: black;
         width: 100%;
         height: 2px;
         opacity: 0;
         transition: 0.7s all;
     }
 
-    &-link:hover::before{
+    &-link:hover::before {
         opacity: 100;
         transition: 0.7s all;
 

@@ -13,5 +13,6 @@ class SubCategoryItem extends Model
         "name",
         "category_id",
         "slug",
+        "image_url"
     ];
 }

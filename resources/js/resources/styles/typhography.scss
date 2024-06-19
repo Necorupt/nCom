@@ -9,6 +9,26 @@ h2 {
     color: black;
     font-size: 0.875rem;
     font-weight: 500;
-    font: normal 0.9375rem / 1.2 Manrope, Helvetica, "Open Sans", Arial,
+    font: normal 0.9375rem / 1.5 Manrope, Helvetica, "Open Sans", Arial,
         sans-serif;
+}
+
+.footer {
+    &__link {
+        color: gray;
+        text-decoration: underline;
+        margin: 0px;
+
+        transition: 0.6s ease-in-out all;
+
+        &:hover {
+            color: black;
+            transition: 0.6s ease-in-out all;
+        }
+    }
+
+    &__string {
+        color: gray;
+        margin: 0px;
+    }
 }

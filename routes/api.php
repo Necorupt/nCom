@@ -21,6 +21,7 @@ Route::middleware(['web'])->group(function(){
     Route::post('/category/create',[CategoryItemController::class,'create']);
     Route::post('/subcategory/create',[SubCategoryItemController::class,'create']);
     Route::post('/product/create',[ProductController::class,'create']);
+    Route::post('/product/update',[ProductController::class,'update']);
 
     Route::post('/category/remove');
     Route::post('/subcategory/remove');

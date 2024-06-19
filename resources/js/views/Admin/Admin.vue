@@ -5,9 +5,10 @@
 
     <a href="/Admin/categories">Категории</a>
 
-    <form action="/logout" method="post" @submit.prevent="logout" ref="form">
+    <!--<form action="/logout" method="post" @submit.prevent="logout" ref="form">
         <input name="logout" type="submit" >
     </form>
+-->
 </template>
 
 <script>
